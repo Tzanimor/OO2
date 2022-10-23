@@ -26,8 +26,8 @@ public class  CesarCipher extends SubsitutionCipher {
   protected char cipherChar(char inputChar) {
 	  if (inputChar == ' ') // Espacios se mantienen
 		  return ' ';
-      int offset;
       char result;
+      int offset;
       int idx = java.util.Arrays.binarySearch(alphabet, Character.toLowerCase(inputChar)); // Busca caracter en minuscula en alfabeto
       if (idx < 0)  // Comprueba si esta en el alfabeto, redundante
     	  throw new IllegalArgumentException("Character not available in alphabet");
@@ -64,5 +64,5 @@ public class  CesarCipher extends SubsitutionCipher {
 		  this.jump = alphabet.length + (newJump % alphabet.length); // Elimina vueltas y arregla el negativo
 	  else
 		  this.jump = newJump % alphabet.length; // Elimina vueltas
-  }
+  };
 }

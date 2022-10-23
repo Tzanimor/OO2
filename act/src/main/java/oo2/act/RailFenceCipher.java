@@ -38,5 +38,5 @@ public class RailFenceCipher extends TranspositionCipher {
 		if (remainder >= railCount) extra = 1; else extra = 0; // Calc resto
 		rails[rails.length - 1] = takeRail(sum, cycles + extra, inputChar);  // Carril pie
 		return rails;
-	}
+	};
 }

@@ -43,7 +43,7 @@ public class VigenereCipher extends SubsitutionCipher {
       if (Character.isUpperCase(inputChar)) // Cambia a mayuscula si necesita
     	  result = Character.toUpperCase(result);
       return result;
-  }
+  };
 
   protected char decipherChar(char inputChar) {
 	  if (inputChar == ' ') { // Espacios se mantienen
@@ -67,12 +67,12 @@ public class VigenereCipher extends SubsitutionCipher {
   
   private int currentOffset(){
       return keyword.next() - alphabet[0];
-  }
+  };
   
   public void setKeyword(String srcString) {
 	  if (srcString.length() == 0) // Comprobando si la clave es al menos un caracterde largo
 		  throw new IllegalArgumentException("Keyword too short");
 	  correctInput(srcString); // Comprobando si los caracteres de la clave son validos
       keyword = new CharCircularBuffer(srcString);
-  }
+  };
 }

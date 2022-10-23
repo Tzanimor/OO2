@@ -30,5 +30,5 @@ public class RouteCipher extends TranspositionCipher {
 			sum+= cycles + extra;
 		}
 		return rails;
-	}
+	};
 }

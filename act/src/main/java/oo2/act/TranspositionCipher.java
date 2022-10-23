@@ -19,7 +19,7 @@ public abstract class TranspositionCipher implements Cipher {
 		for(int idx = 0; idx < rails.length; idx++) // Unificar carriles
 			result += rails[idx];
 		return result; 
-	}
+	};
 	
 	public String decipher(String inputText) {		
 		String[] rails = recoverRails(inputText); // Recuperar carriles, implementacion especifica en hijos
@@ -33,21 +33,21 @@ public abstract class TranspositionCipher implements Cipher {
 			result+= singleChar[0];
 		}
 		return result;
-	}
+	};
 	
-	protected abstract String[] recoverRails(String inputText); 
+	protected abstract String[] recoverRails(String inputText);
 	
 	protected String takeRail(int pos, int amount, char inputChar[]) {
 		String result = "";
 		for (int idx = pos; idx < (pos + amount) ; idx++) 
 			result+= inputChar[idx];
 		return result;
-	}
+	};
 	
 	public void setRailCount(int newRailCount) {
 		if (newRailCount < 1) // Comprueba que sea 1 o mas
 			throw new IllegalArgumentException("Rails need to set at least in 1");
 		this.railCount = newRailCount;
 		bIndex.setSize(newRailCount); // Se asegura actualizar siempre el indice de rebote
-	}
+	};
 }
