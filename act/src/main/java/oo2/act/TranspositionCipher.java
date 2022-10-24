@@ -22,26 +22,30 @@ public abstract class TranspositionCipher implements Cipher {
 	};
 	
 	public String decipher(String inputText) {		
-		String[] rails = recoverRails(inputText); // Recuperar carriles, implementacion especifica en hijos
+		char inputChar[] = new char[inputText.length()]; // Transformando cadena a arreglo de caracteres
+		inputText.getChars(0,inputText.length(), inputChar, 0);
+		bIndex.reset(); // Limpia el indice de rebote
+		char[][] rails = new char[railCount][inputText.length()]; // Inicializando carriles
+		for(int i = 0; i < inputText.length(); i++) { // Marcar camino
+			int pos = bIndex.next();
+			rails[pos][i] = '@';
+		}
+		int j = 0;
+		for(int k = 0; k < railCount; k++) { // Llenar matriz
+			for(int l = 0; l < inputText.length(); l++) {
+				if (rails[k][l] == '@') {
+					rails[k][l] = inputChar[j];
+					j++;
+				}
+			}
+		}		
 		bIndex.reset(); // Limpia el indice de rebote
 		String result = "";
-		for(int idx = 0; idx < inputText.length(); idx++) { // Destribuir caracteres
+		for(int m = 0; m < inputText.length(); m++) { // Recorrer camino
 			int pos = bIndex.next();
-			char[] singleChar = new char[1];
-			rails[pos].getChars(0, 1, singleChar, 0);
-			rails[pos] = new StringBuilder(rails[pos]).deleteCharAt(0).toString();
-			result+= singleChar[0];
+			result += rails[pos][m];
 		}
-		return result;
-	};
-	
-	protected abstract String[] recoverRails(String inputText);
-	
-	protected String takeRail(int pos, int amount, char inputChar[]) {
-		String result = "";
-		for (int idx = pos; idx < (pos + amount) ; idx++) 
-			result+= inputChar[idx];
-		return result;
+		return result; 
 	};
 	
 	public void setRailCount(int newRailCount) {

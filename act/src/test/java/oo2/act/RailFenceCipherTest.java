@@ -1,6 +1,8 @@
 package oo2.act;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -46,5 +48,10 @@ public class RailFenceCipherTest {
         railFence = new RailFenceCipher(3);
         textDe = "";															textCi = "";
 		assertEquals(textCi, railFence.cipher(textDe));							assertEquals(textDe, railFence.decipher(textCi));					// RailFance vacio
+	};
+	@Test
+	public void InputTest() {
+		assertThrows(IllegalArgumentException.class, () -> { new RailFenceCipher(0); });															// RailFance clave cero
+		assertThrows(IllegalArgumentException.class, () -> { new RailFenceCipher(-5); });															// RailFance clave negativa
 	};
 }

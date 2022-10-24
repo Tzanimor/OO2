@@ -14,6 +14,7 @@ public class CipherTest {
 		c.SimpleTest();
 		c.JumpTest();
 		c.EmptyTest();
+		c.InputTest();
 	};
 	@Test
 	public void VigenereTest() {
@@ -21,6 +22,7 @@ public class CipherTest {
 		v.SimpleTest();
 		v.MinimalTest();
 		v.EmptyTest();
+		v.InputTest();
 	};
 	@Test
 	public void RailFenceTest() {
@@ -28,6 +30,7 @@ public class CipherTest {
         rf.RemainderTest();
         rf.RailTest();
         rf.EmptyTest();
+		rf.InputTest();
 	};
 	@Test
 	public void RouteCipherTest() {
@@ -35,5 +38,6 @@ public class CipherTest {
         r.RemainderTest();
         r.RailTest();
         r.EmptyTest();
+		r.InputTest();
 	};
 }

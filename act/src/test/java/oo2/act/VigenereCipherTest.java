@@ -1,6 +1,8 @@
 package oo2.act;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -31,5 +33,12 @@ public class VigenereCipherTest {
 		vigenere = new VigenereCipher("d");		
 		textDe = "";															textCi = "";
 		assertEquals(textCi, vigenere.cipher(textDe));							assertEquals(textDe, vigenere.decipher(textCi));					// Vigenere vacio
+	};
+	@Test
+	public void InputTest() {
+		vigenere = new VigenereCipher("pizza");
+		assertThrows(IllegalArgumentException.class, () -> { vigenere.cipher("ñ"); });																// Vigenere texto fuera de alfabeto
+		assertThrows(IllegalArgumentException.class, () -> { new VigenereCipher(""); });															// Vigenere clave vacia
+		assertThrows(IllegalArgumentException.class, () -> { new VigenereCipher("ñ"); });															// Vigenere clave fuera de alfabeto
 	};
 }

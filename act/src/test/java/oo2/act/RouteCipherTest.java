@@ -1,6 +1,8 @@
 package oo2.act;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,5 +44,10 @@ public class RouteCipherTest {
         route = new RouteCipher(3);
 		textDe = "";															textCi = "";
 		assertEquals(textCi, route.cipher(textDe));								assertEquals(textDe, route.decipher(textCi));						// Route vacio
+	};
+	@Test
+	public void InputTest() {
+		assertThrows(IllegalArgumentException.class, () -> { new RouteCipher(0); });															// Route clave cero
+		assertThrows(IllegalArgumentException.class, () -> { new RouteCipher(-5); });															// Route clave negativa
 	};
 }

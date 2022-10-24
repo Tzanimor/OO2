@@ -1,6 +1,8 @@
 package oo2.act;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,5 +44,10 @@ public class CesarCipherTest {
 		cesar = new CesarCipher(0);
 		textDe = "";															textCi = "";
 		assertEquals(textCi, cesar.cipher(textDe));								assertEquals(textDe, cesar.decipher(textCi));						// Cesar vacio
+	};
+	@Test
+	public void InputTest() {
+		cesar = new CesarCipher(3);
+		assertThrows(IllegalArgumentException.class, () -> { cesar.cipher("ñ"); });															// Cesar texto fuera de alfabeto
 	};
 }
