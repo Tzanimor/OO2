@@ -30,19 +30,9 @@ public class VigenereCipher extends SubsitutionCipher {
 		  keyword.next(); // Salto extra que se come el espacio
 		  return ' ';
 	  }
-	  int idx = java.util.Arrays.binarySearch(alphabet,Character.toLowerCase(inputChar)); // Busca caracter en minuscula en alfabeto 
-	  if (idx < 0)  // Comprobando si esta en el alfabeto, redundante
-    	  throw new IllegalArgumentException("Character not available in alphabet");
-	  int offset;
-      char result;
-	  offset = idx + this.currentOffset(); // Suma posicion char a cifrar (idx) y posicion char clave (currentOffset)
-      if (offset < alphabet.length)
-          result = alphabet[offset];
-      else
-          result = alphabet[offset - alphabet.length];
-      if (Character.isUpperCase(inputChar)) // Cambia a mayuscula si necesita
-    	  result = Character.toUpperCase(result);
-      return result;
+	  int offset = this.searchCaracter(inputChar) + this.currentOffset();
+      char result = (offset < alphabet.length) ? alphabet[offset] : alphabet[offset - alphabet.length]; // Controla el salto
+      return resultCase(inputChar, result);
   };
 
   protected char decipherChar(char inputChar) {
@@ -50,19 +40,9 @@ public class VigenereCipher extends SubsitutionCipher {
 		  keyword.next(); // Salto extra que se come el espacio
 		  return ' ';
 	  }
-	  int idx = java.util.Arrays.binarySearch(alphabet,Character.toLowerCase(inputChar)); // Busca caracter en minuscula en alfabeto 
-	  if (idx < 0)  // Comprobando si esta en el alfabeto, redundante
-    	  throw new IllegalArgumentException("Character not available in alphabet");
-	  int offset;
-      char result;
-      offset = idx - this.currentOffset();
-      if (offset >= 0)
-          result = alphabet[offset];
-      else
-          result = alphabet[alphabet.length + offset];
-      if (Character.isUpperCase(inputChar)) // Cambia a mayuscula si necesita
-    	  result = Character.toUpperCase(result);
-      return result;
+	  int offset = this.searchCaracter(inputChar) - this.currentOffset();
+      char result = (offset >= 0) ? alphabet[offset] : alphabet[alphabet.length + offset]; // Controla el salto
+      return resultCase(inputChar, result);
   };
   
   private int currentOffset(){
@@ -72,7 +52,10 @@ public class VigenereCipher extends SubsitutionCipher {
   public void setKeyword(String srcString) {
 	  if (srcString.length() == 0) // Comprobando si la clave es al menos un caracterde largo
 		  throw new IllegalArgumentException("Keyword too short");
-	  correctInput(srcString); // Comprobando si los caracteres de la clave son validos
-      keyword = new CharCircularBuffer(srcString);
+	  char[] src = new char[srcString.length()]; // Transformando cadena a arreglo de caracteres
+	  srcString.getChars(0,srcString.length(), src, 0);
+	  for (int idx=0; idx < srcString.length(); idx++)
+		  searchCaracter(src[idx]); // Comprobando si los caracteres de la clave son validos
+	  keyword = new CharCircularBuffer(srcString);
   };
 }
