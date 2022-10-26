@@ -29,9 +29,9 @@ public class VigenereCipher extends SubsitutionCipher {
 			keyword.next(); // Salto extra que se come el espacio
 			return ' ';
 		}
-		int offset = this.searchCaracter(inputChar) + this.currentOffset();
+		int offset = this.searchChar(inputChar) + this.currentOffset();
 		char result = (offset < alphabet.length) ? alphabet[offset] : alphabet[offset - alphabet.length]; // Controla el salto
-		return resultCase(inputChar, result);
+		return setCase(inputChar, result);
 	}
 
 	protected char decipherChar(char inputChar) {
@@ -39,9 +39,9 @@ public class VigenereCipher extends SubsitutionCipher {
 			keyword.next(); // Salto extra que se come el espacio
 			return ' ';
 		}
-		int offset = this.searchCaracter(inputChar) - this.currentOffset();
+		int offset = this.searchChar(inputChar) - this.currentOffset();
 		char result = (offset >= 0) ? alphabet[offset] : alphabet[alphabet.length + offset]; // Controla el salto
-		return resultCase(inputChar, result);
+		return setCase(inputChar, result);
 	}
 
 	private int currentOffset() {
@@ -54,7 +54,7 @@ public class VigenereCipher extends SubsitutionCipher {
 		char[] src = new char[srcString.length()]; // Transformando cadena a arreglo de caracteres
 		srcString.getChars(0, srcString.length(), src, 0);
 		for (int idx = 0; idx < srcString.length(); idx++)
-			searchCaracter(src[idx]); // Comprobando si los caracteres de la clave son validos
+			searchChar(src[idx]); // Comprobando si los caracteres de la clave son validos
 		keyword = new CharCircularBuffer(srcString);
 	}
 }

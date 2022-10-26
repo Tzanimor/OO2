@@ -25,17 +25,17 @@ public class CesarCipher extends SubsitutionCipher {
 	protected char cipherChar(char inputChar) {
 		if (inputChar == ' ') // Espacios se mantienen
 			return ' ';
-		int offset = searchCaracter(inputChar) + jump;
+		int offset = searchChar(inputChar) + jump;
 		char result = (offset < alphabet.length) ? alphabet[offset] : alphabet[offset - alphabet.length]; // Controla el salto
-		return resultCase(inputChar, result);
+		return setCase(inputChar, result);
 	}
 
 	protected char decipherChar(char inputChar) {
 		if (inputChar == ' ') // Espacios se mantienen
 			return ' ';
-		int offset = searchCaracter(inputChar) - jump;
+		int offset = searchChar(inputChar) - jump;
 		char result = (offset >= 0) ? alphabet[offset] : alphabet[alphabet.length + offset]; // Controla el salto
-		return resultCase(inputChar, result);
+		return setCase(inputChar, result);
 	}
 
 	public void setJump(int newJump) {

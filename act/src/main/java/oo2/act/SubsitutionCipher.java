@@ -22,18 +22,18 @@ public abstract class SubsitutionCipher implements Cipher {
 
 	protected abstract char decipherChar(char inputChar);
 
-	protected int searchCaracter(char inputChar) {
+	protected int searchChar(char inputChar) {
 		int idx = java.util.Arrays.binarySearch(alphabet, Character.toLowerCase(inputChar)); // Busca caracter en minuscula en alfabeto
 		if (idx < 0)
 			throw new IllegalArgumentException("Character not available in alphabet");
 		return idx;
 	}
 
+	protected char setCase(char inputChar, char result) {
+		return (Character.isUpperCase(inputChar)) ? Character.toUpperCase(result) : result; // Cambia a mayuscula si necesita
+	}
+	
 	public void setAlphabet(String inputAlphabet) {
 		alphabet = inputAlphabet.toCharArray(); // Transformando cadena a arreglo de caracteres
-	}
-
-	protected char resultCase(char inputChar, char result) {
-		return (Character.isUpperCase(inputChar)) ? Character.toUpperCase(result) : result; // Cambia a mayuscula si necesita
 	}
 }
