@@ -1,15 +1,14 @@
 package oo2.act;
 
 public class RailFenceBouncingIndex extends BouncingIndex {
-	 
+
 	private boolean dir;
-	  
 
 	public RailFenceBouncingIndex() {
 		index = 0;
 		dir = true;
-	};
-	
+	}
+
 	public int next() {
 		int result = index;
 		if (dir) {
@@ -26,8 +25,8 @@ public class RailFenceBouncingIndex extends BouncingIndex {
 			else {
 				dir = true;
 				index++;
-			}    	  
+			}
 		}
-		return result;            
-	};
+		return result;
+	}
 }
