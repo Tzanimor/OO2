@@ -9,32 +9,36 @@ public class CipherTest {
 		// Queda por si se necesita agregar preset, pero sino volar
 	};
 	@Test
-	public void CesarTest() {
+	public void CesarTest() throws Exception {
 		CesarCipherTest c = new CesarCipherTest();
+		c.setUp();
 		c.SimpleTest();
 		c.JumpTest();
 		c.EmptyTest();
 		c.InputTest();
 	};
 	@Test
-	public void VigenereTest() {
+	public void VigenereTest() throws Exception {
 		VigenereCipherTest v = new VigenereCipherTest();
+		v.setUp();
 		v.SimpleTest();
 		v.MinimalTest();
 		v.EmptyTest();
 		v.InputTest();
 	};
 	@Test
-	public void RailFenceTest() {
+	public void RailFenceTest() throws Exception {
         RailFenceCipherTest rf = new RailFenceCipherTest();
+        rf.setUp();
         rf.RemainderTest();
         rf.RailTest();
         rf.EmptyTest();
 		rf.InputTest();
 	};
 	@Test
-	public void RouteCipherTest() {
+	public void RouteCipherTest() throws Exception {
 		RouteCipherTest r = new RouteCipherTest();
+		r.setUp();
         r.RemainderTest();
         r.RailTest();
         r.EmptyTest();

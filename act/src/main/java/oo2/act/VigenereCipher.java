@@ -4,7 +4,7 @@ public class VigenereCipher extends SubsitutionCipher {
 
 	private CharCircularBuffer keyword;
 
-	public VigenereCipher(String inputAlphabet, String kword) {
+	public VigenereCipher(String kword, String inputAlphabet) {
 		setAlphabet(inputAlphabet);
 		setKeyword(kword);
 	}
@@ -51,8 +51,7 @@ public class VigenereCipher extends SubsitutionCipher {
 	public void setKeyword(String srcString) {
 		if (srcString.length() == 0) // Comprobando si la clave es al menos un caracterde largo
 			throw new IllegalArgumentException("Keyword too short");
-		char[] src = new char[srcString.length()]; // Transformando cadena a arreglo de caracteres
-		srcString.getChars(0, srcString.length(), src, 0);
+		char[] src = srcString.toCharArray(); // Transformando cadena a arreglo de caracteres
 		for (int idx = 0; idx < srcString.length(); idx++)
 			searchChar(src[idx]); // Comprobando si los caracteres de la clave son validos
 		keyword = new CharCircularBuffer(srcString);

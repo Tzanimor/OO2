@@ -1,6 +1,6 @@
 package oo2.act;
 
-public abstract class TranspositionCipher implements Cipher {
+public abstract class TranspositionCipher implements CipherBuilder {
 
 	protected BouncingIndex bIndex;
 	protected int railCount;

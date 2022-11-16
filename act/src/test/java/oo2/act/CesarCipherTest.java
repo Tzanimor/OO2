@@ -8,46 +8,47 @@ import org.junit.jupiter.api.Test;
 
 public class CesarCipherTest {
 	
-	public CesarCipher cesar;
+	public Cipher cipher;
+	CipherBuilder builder;
 	public String textDe;
 	public String textCi;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		// Queda por si se necesita agregar preset, pero sino volar
+		cipher = new Cipher();
 	};
 	@Test
 	public void SimpleTest() {
-		cesar = new CesarCipher(3);
+		builder = cipher.constructCeasarCipher(3);
 		textDe = "Todo el material entra en el parcial y Final";				textCi = "Wrgr ho pdwhuldo hqwud hq ho sdufldo b Ilqdo";
-		assertEquals(textCi, cesar.cipher(textDe));								assertEquals(textDe, cesar.decipher(textCi));						// Cesar
+		assertEquals(textCi, builder.cipher(textDe));							assertEquals(textDe, builder.decipher(textCi));						// Cesar
 	};
 	@Test
 	public void JumpTest() {
-		cesar = new CesarCipher(0);
+		builder = cipher.constructCeasarCipher(0);
 		textDe = "Todo el material entra en el parcial y Final";				textCi = "Todo el material entra en el parcial y Final";
-		assertEquals(textCi, cesar.cipher(textDe));								assertEquals(textDe, cesar.decipher(textCi));						// Cesar sin salto
+		assertEquals(textCi, builder.cipher(textDe));							assertEquals(textDe, builder.decipher(textCi));						// Cesar sin salto
 		
-		cesar.setJump(3 + (26*8));
+		builder = cipher.constructCeasarCipher(3 + (26*8));
 		textDe = "Todo el material entra en el parcial y Final";				textCi = "Wrgr ho pdwhuldo hqwud hq ho sdufldo b Ilqdo";
-		assertEquals(textCi, cesar.cipher(textDe));								assertEquals(textDe, cesar.decipher(textCi));						// Cesar con vueltas
+		assertEquals(textCi, builder.cipher(textDe));							assertEquals(textDe, builder.decipher(textCi));						// Cesar con vueltas
 		
-		cesar.setJump(-23);
+		builder = cipher.constructCeasarCipher(-23);
 		textDe = "Todo el material entra en el parcial y Final";				textCi = "Wrgr ho pdwhuldo hqwud hq ho sdufldo b Ilqdo";
-		assertEquals(textCi, cesar.cipher(textDe));								assertEquals(textDe, cesar.decipher(textCi));						// Cesar negativo
+		assertEquals(textCi, builder.cipher(textDe));							assertEquals(textDe, builder.decipher(textCi));						// Cesar negativo
 		
 		textDe = "";															textCi = "";
-		assertEquals(textCi, cesar.cipher(textDe));								assertEquals(textDe, cesar.decipher(textCi));						// Cesar vacio
+		assertEquals(textCi, builder.cipher(textDe));							assertEquals(textDe, builder.decipher(textCi));						// Cesar vacio
 	};
 	@Test
 	public void EmptyTest() {
-		cesar = new CesarCipher(0);
+		builder = cipher.constructCeasarCipher(0);
 		textDe = "";															textCi = "";
-		assertEquals(textCi, cesar.cipher(textDe));								assertEquals(textDe, cesar.decipher(textCi));						// Cesar vacio
+		assertEquals(textCi, builder.cipher(textDe));							assertEquals(textDe, builder.decipher(textCi));						// Cesar vacio
 	};
 	@Test
 	public void InputTest() {
-		cesar = new CesarCipher(3);
-		assertThrows(IllegalArgumentException.class, () -> { cesar.cipher("ñ"); });															// Cesar texto fuera de alfabeto
+		builder = cipher.constructCeasarCipher(3);
+		assertThrows(IllegalArgumentException.class, () -> { builder.cipher("ñ"); });																// Cesar texto fuera de alfabeto
 	};
 }

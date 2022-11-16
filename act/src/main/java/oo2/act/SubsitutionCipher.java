@@ -1,6 +1,6 @@
 package oo2.act;
 
-public abstract class SubsitutionCipher implements Cipher {
+public abstract class SubsitutionCipher implements CipherBuilder {
 
 	protected char[] alphabet;
 
