@@ -8,38 +8,38 @@ import org.junit.jupiter.api.Test;
 
 public class VigenereCipherTest {
 
+	public CipherBuilder builder;
 	public Cipher cipher;
-	CipherBuilder builder;
 	public String textDe;
 	public String textCi;
 	
 	@BeforeEach
 	void setUp() throws Exception {
-		cipher = new Cipher();
+		builder = new CipherBuilder();
 	};
 	@Test
 	public void SimpleTest() {
-		builder = cipher.constructVigenereCipher("pizza");
+		cipher = builder.constructVigenereCipher("pizza");
 		textDe = "Todo el material entra en el parcial y Final";				textCi = "Iwcn tt laimqhaa dmtgi dn mk ppzbhaa x Fxvzk";
-		assertEquals(textCi, builder.cipher(textDe));							assertEquals(textDe, builder.decipher(textCi));						// Vigenere
+		assertEquals(textCi, cipher.cipher(textDe));							assertEquals(textDe, cipher.decipher(textCi));						// Vigenere
 	};
 	@Test
 	public void MinimalTest() {
-		builder = cipher.constructVigenereCipher("d");
+		cipher = builder.constructVigenereCipher("d");
 		textDe = "Todo el material entra en el parcial y Final";				textCi = "Wrgr ho pdwhuldo hqwud hq ho sdufldo b Ilqdo";
-		assertEquals(textCi, builder.cipher(textDe));							assertEquals(textDe, builder.decipher(textCi));						// Vigenere con letra como clave 
+		assertEquals(textCi, cipher.cipher(textDe));							assertEquals(textDe, cipher.decipher(textCi));						// Vigenere con letra como clave 
 	};
 	@Test
 	public void EmptyTest() {
-		builder = cipher.constructVigenereCipher("pizza");
+		cipher = builder.constructVigenereCipher("pizza");
 		textDe = "";															textCi = "";
-		assertEquals(textCi, builder.cipher(textDe));							assertEquals(textDe, builder.decipher(textCi));						// Vigenere vacio
+		assertEquals(textCi, cipher.cipher(textDe));							assertEquals(textDe, cipher.decipher(textCi));						// Vigenere vacio
 	};
 	@Test
 	public void InputTest() {
-		builder = cipher.constructVigenereCipher("pizza");
-		assertThrows(IllegalArgumentException.class, () -> { builder.cipher("ñ"); });																// Vigenere texto fuera de alfabeto
-		assertThrows(IllegalArgumentException.class, () -> { cipher.constructVigenereCipher(""); });												// Vigenere clave vacia
-		assertThrows(IllegalArgumentException.class, () -> { cipher.constructVigenereCipher("ñ"); });												// Vigenere clave fuera de alfabeto
+		cipher = builder.constructVigenereCipher("pizza");
+		assertThrows(IllegalArgumentException.class, () -> { cipher.cipher("ñ"); });																// Vigenere texto fuera de alfabeto
+		assertThrows(IllegalArgumentException.class, () -> { builder.constructVigenereCipher(""); });												// Vigenere clave vacia
+		assertThrows(IllegalArgumentException.class, () -> { builder.constructVigenereCipher("ñ"); });												// Vigenere clave fuera de alfabeto
 	};
 }

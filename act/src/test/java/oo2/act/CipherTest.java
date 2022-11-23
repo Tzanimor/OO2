@@ -10,12 +10,12 @@ public class CipherTest {
 	};
 	@Test
 	public void CesarTest() throws Exception {
-		CesarCipherTest c = new CesarCipherTest();
-		c.setUp();
-		c.SimpleTest();
-		c.JumpTest();
-		c.EmptyTest();
-		c.InputTest();
+		CesarCipherTest cs = new CesarCipherTest();
+		cs.setUp();
+		cs.SimpleTest();
+		cs.JumpTest();
+		cs.EmptyTest();
+		cs.InputTest();
 	};
 	@Test
 	public void VigenereTest() throws Exception {
@@ -43,5 +43,14 @@ public class CipherTest {
         r.RailTest();
         r.EmptyTest();
 		r.InputTest();
+	};
+	@Test
+	public void ColumnarCipherTest() throws Exception {
+		ColumnarCipherTest cl = new ColumnarCipherTest();
+		cl.setUp();
+		cl.RemainderTest();
+		cl.SimpleTest();
+		cl.EmptyTest();
+		cl.InputTest();
 	};
 }

@@ -14,4 +14,12 @@ public abstract class BouncingIndex {
 	public void reset() {
 		index = 0;
 	}
+	
+	public String[] getOrder(String[] rails) {
+		return rails;
+	}
+	
+	public char[][] getOrder(char[][] rails) {
+		return rails;
+	}
 }
