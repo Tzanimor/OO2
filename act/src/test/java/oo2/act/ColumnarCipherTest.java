@@ -28,8 +28,16 @@ public class ColumnarCipherTest {
 	};
 	@Test
 	public void SimpleTest() {
+		cipher = builder.constructColumnarCipher("g");		
+		textDe = "Todo el material entra en el parcial y Final";				textCi = "Todo el material entra en el parcial y Final";	
+		assertEquals(textCi, cipher.cipher(textDe));							assertEquals(textDe, cipher.decipher(textCi));						// Columnar con carril = 1
+		
+		cipher = builder.constructColumnarCipher("za");	
+		textDe = "Todo el material entra en el parcial y Final";				textCi = "ooe aeiletae lprilyFnlTd lmtra nr ne aca  ia";	
+		assertEquals(textCi, cipher.cipher(textDe));							assertEquals(textDe, cipher.decipher(textCi));						// Columnar con carril = 2
+		
 		cipher = builder.constructColumnarCipher("cat");		
-		textDe = "Todo el material entra en el parcial y Final";				textCi = "o  ti t   rayilTolarlnanlai Fademeaereepcl n";	
+		textDe = "Todo el material entra en el parcial y Final";				textCi = "o  ti t   rayilTolarlnanlai Fademeaereepcl n";
 		assertEquals(textCi, cipher.cipher(textDe));							assertEquals(textDe, cipher.decipher(textCi));						// Columnar con carril = 3
 	};
 	@Test

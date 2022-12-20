@@ -1,11 +1,9 @@
 package oo2.act;
 
-import java.util.Arrays;
-
 public class TranspositionCipher implements Cipher {
 
-	protected BouncingIndex bIndex;
-	protected int railCount;
+	private BouncingIndex bIndex;
+	private int railCount;
 	
 	public TranspositionCipher(BouncingIndex index, int railCount) {
 		bIndex = index; // Inicializacion de indice de rebote especifico

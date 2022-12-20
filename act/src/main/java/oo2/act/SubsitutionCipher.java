@@ -82,12 +82,12 @@ public class SubsitutionCipher implements Cipher {
 		alphabet = inputAlphabet.toCharArray(); // Transformando cadena a arreglo de caracteres
 	}
 	
-	public void setJump(int num) {		
+	private void setJump(int num) {		
 		jump = new int[1];
 		jump[0] = (num < 0) ? alphabet.length + (num % alphabet.length) : num % alphabet.length;
 	}
 	
-	public void setKeyword(String inputText) {
+	private void setKeyword(String inputText) {
 		if (inputText.length() == 0) // Comprobando si la clave es al menos un caracterde largo
 			throw new IllegalArgumentException("Keyword too short");
 		char[] inputChar = inputText.toCharArray(); // Transformando cadena a arreglo de caracteres

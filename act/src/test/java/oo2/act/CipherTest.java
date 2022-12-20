@@ -53,4 +53,11 @@ public class CipherTest {
 		cl.EmptyTest();
 		cl.InputTest();
 	};
+	@Test
+	public void ComplexCipherTest() throws Exception {
+		ComplexCipherTest cx = new ComplexCipherTest();
+		cx.setUp();
+		cx.SimpleTest();
+		cx.EmptyTest();
+	};
 }
