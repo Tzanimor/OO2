@@ -6,7 +6,7 @@ public class ComplexCipher implements Cipher {
 	
 	
 	public ComplexCipher(Cipher c1, Cipher c2) {
-		ciphers = new Cipher[2];
+		ciphers = new Cipher[2]; // Constructor binario
 		ciphers[0] = c1;
 		ciphers[1] = c2;
 	}
@@ -20,9 +20,8 @@ public class ComplexCipher implements Cipher {
 
 	public String decipher(String inputText) {
 		String st = inputText;
-		for (int i = ciphers.length - 1; i >= 0; i--) {
+		for (int i = ciphers.length - 1; i >= 0; i--)
 			st = ciphers[i].decipher(st);
-		}
 		return st;
 	}
 }
